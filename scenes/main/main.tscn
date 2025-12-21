@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://blm4wcelkrm57"]
+
+[ext_resource type="Script" uid="uid://bk7057l6ubsta" path="res://scenes/main/main.gd" id="1_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://crsfr0tlb1k21" path="res://scenes/tile/tile.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://c8uwhvyffqmke" path="res://scenes/player/player.tscn" id="3_k2fmo"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_k2fmo")
+
+[node name="Tiles" type="Node2D" parent="."]
+
+[node name="Tile" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(150, 150)
+
+[node name="Tile2" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(450, 150)
+
+[node name="Tile3" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(750, 150)
+
+[node name="Tile4" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(150, 450)
+
+[node name="Tile5" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(450, 450)
+
+[node name="Tile6" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(750, 450)
+
+[node name="Tile7" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(150, 750)
+
+[node name="Tile8" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(450, 750)
+
+[node name="Tile9" parent="Tiles" instance=ExtResource("2_iuonh")]
+position = Vector2(750, 750)
+
+[node name="Player" parent="." instance=ExtResource("3_k2fmo")]
+position = Vector2(439, 439)
+
+[node name="SkillTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="ConsecTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SkillTimer" to="." method="_on_skill_timer_timeout"]
