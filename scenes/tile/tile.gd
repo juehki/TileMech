@@ -32,3 +32,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	red_tile.hide()
 	if playerInside:
 		print('game over')
+		SignalHub.emit_on_player_death()

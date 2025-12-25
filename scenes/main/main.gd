@@ -1,6 +1,8 @@
 extends Node2D
 
 @onready var tiles: Node2D = $Tiles
+@onready var game_ui: Control = $CanvasLayer/GameUI
+const MAIN = preload("uid://blm4wcelkrm57")
 
 var tileArray: Array
 var exploFuncArr: Array[Callable] = [
@@ -17,6 +19,17 @@ func _ready() -> void:
 	for tile in tileArray:
 		tile.tileId = idCounter
 		idCounter += 1
+		
+func _enter_tree() -> void:
+	SignalHub.playerDied.connect(_on_player_died)
+	
+func _on_player_died() -> void:
+	print('player died')
+	game_ui.showGameOver()
+	get_tree().paused = true
+	await get_tree().create_timer(3).timeout
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(MAIN)
 
 func _on_skill_timer_timeout() -> void:
 	var random_func: Callable = exploFuncArr.pick_random()
